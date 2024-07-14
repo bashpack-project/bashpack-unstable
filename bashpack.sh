@@ -126,7 +126,7 @@ exists_command() {
 	local command=${1}
 
 	if ! which $command > /dev/null; then
-		echo "$command: Error: command not found"
+		echo "$command: Error: command not found."
 	else
 		echo "exists"
 	fi
@@ -211,7 +211,7 @@ file_current_publication=$dir_config"/.current_production"
 if [ -f "$dir_config/$file_config" ]; then
 	PUBLICATION=$(get_config_value "$dir_config/$file_config" "publication")
 else
-	PUBLICATION="unstable"
+	PUBLICATION="main"
 fi
 
 # Depending on the chosen publication, the repository will be different:
@@ -430,7 +430,6 @@ detect_publication() {
 
 
 
-
 # Create the command from the downloaded archives
 # Works together with install or update functions
 create_cli() {
@@ -588,29 +587,6 @@ update_cli() {
 #
 # /!\	This function must work everytime a modification is made in the code. 
 #		Because it's called by the update function.
-# install_cli() {
-
-# 	local chosen_publication=${1}
-
-# 	detect_cli
-
-# 	if [ $chosen_publication = "unstable" ]; then
-# 		# Install "unstable" publication
-# 		download_cli "$URL/tarball/$VERSION"
-
-# 	elif [ $chosen_publication = "dev" ]; then
-# 		# Install "dev" publication
-# 		download_cli "$URL/tarball/$VERSION"
-
-# 	else
-# 		# Install "main" publication if nothing is precised
-# 		download_cli "$URL/tarball/$VERSION"
-# 	fi
-
-
-# 	create_cli
-# }
-
 install_cli() {
 	detect_cli
 
@@ -618,6 +594,7 @@ install_cli() {
 
 	create_cli
 }
+
 
 
 

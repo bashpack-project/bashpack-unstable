@@ -4,30 +4,47 @@
 
 # Bashpack unstable & dev
 
-### Installation
+### Quick start
 
-**unstable**
+**Install**
+_The first installation will always be on the main publication. You'll have to manually switch between publication stages._ \
+_Explaination below._
+
 ```javascript
-curl -sL https://raw.githubusercontent.com/bashpack-project/bashpack-unstable/main/bashpack.sh -o bashpack.sh \
+curl -sL https://raw.githubusercontent.com/bashpack-project/bashpack/main/bashpack.sh -o bashpack.sh \
  && chmod +x bashpack.sh \
  && sudo ./bashpack.sh -i \
  && rm bashpack.sh
 ```
 
-**dev**
+**Uninstall**
 ```javascript
-curl -sL https://raw.githubusercontent.com/bashpack-project/bashpack-dev/main/bashpack.sh -o bashpack.sh \
- && chmod +x bashpack.sh \
- && sudo ./bashpack.sh -i \
- && rm bashpack.sh
+sudo bp --self-delete
 ```
+
+**Usage**
+```javascript
+bp --help
+```
+
+<br>
 
 ### Switch between repositories
-_To switch between repositories, you have to edit the "publication" parameter in /etc/bashpack/bashpack_config_
+To switch between repositories, you have to edit the "publication" parameter in /etc/bashpack/bashpack_config \ 
+Following values can be used: \
+- main \
+- unstable \
+- dev \
 
 **main to unstable**
 ```javascript
 sudo sed -i 's/main/unstable/g' /etc/bashpack/bashpack_config \
+ && sudo bp -u
+```
+
+**main to dev**
+```javascript
+sudo sed -i 's/main/dev/g' /etc/bashpack/bashpack_config \
  && sudo bp -u
 ```
 
@@ -41,16 +58,6 @@ sudo sed -i 's/unstable/dev/g' /etc/bashpack/bashpack_config \
 ```javascript
 sudo sed -i 's/dev/unstable/g' /etc/bashpack/bashpack_config \
  && sudo bp -u
-```
-
-### Uninstall
-```javascript
-sudo bp --self-delete
-```
-
-### Usage
-```javascript
-bp --help
 ```
 
 <br>
